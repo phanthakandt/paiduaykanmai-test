@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  nginx:
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    depends_on:
+      - frontend
+    ports:
+      - '80:80'
+
+  frontend:
+    build:
+      dockerfile: Dockerfile
+      context: ./frontend
+    volumes:
+      - /app/node_modules
+      - ./frontend:/src
+
+  server:
+    build:
+      dockerfile: Dockerfile
+      context: ./server
+    volumes:
+      - /app/node_modules
+      - ./server:/app
+    ports:
+      - 3001:3001
+    links:
+      - mongo
+
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 82Pcjvy4AX!4vn-V439jQeds
+    volumes:
+      - ./database/mongo:/data/db
+    ports:
+      - 27017:27017
