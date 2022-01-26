@@ -1,52 +1,7 @@
 # paiduaykanmai-test
 
-# question 1.1
-
-function questionOne(num) {
-    const alp = ['R','G','B'];
-    let ranChar = '';
-    let result = '';
-    let count = 0;
-    for(let i=0; i<num; i++){   
-        ranChar = alp[Math.floor(Math.random() * 3)]
-        if(result && result[result.length-1] === ranChar) {
-            count += 1        
-        }
-        result += ranChar
-    } 
-    return `${result}\n${count}`
-}
-
-console.log(questionOne(3));
-console.log(questionOne(4));
-console.log(questionOne(6));
-
-# question 1.2
-
-function questionTwo(amount) {
-    let output = [];
-    let currentAmount = amount;
-    while(currentAmount !== 0) {
-        if (currentAmount - 100 >= 0){
-            currentAmount -= 100;
-            output.push(100);
-        } else if (currentAmount - 20 >= 0){
-            currentAmount -= 20;
-            output.push(20);
-        } else if (currentAmount - 10 >= 0){
-            currentAmount -= 10;
-            output.push(10);
-        } else if (currentAmount - 5 >= 0){
-            currentAmount -= 5;
-            output.push(5);
-        } else {
-            currentAmount -= 1
-            output.push(1);
-        }
-    }
-    return output.length;
-}
-
-console.log(questionTwo(125));
-console.log(questionTwo(43));
-console.log(questionTwo(1000000000));
+1. question 1.1 and 1.2 is in question.txt file.
+2. please follow this guide for website coding test
+    1. open terminal at the root of the project.
+    2. use command 'cd frontend' > 'npm install' > 'cd ..'> docker-compose up --build -d
+    3. go to 'localhost'

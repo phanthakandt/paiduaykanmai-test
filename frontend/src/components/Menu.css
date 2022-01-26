@@ -1,0 +1,29 @@
+iframe {
+    display: none!important;
+}
+
+.nav-link:hover {
+    color: #FAB922!important
+}
+
+.nav-link {
+    color: rgb(80, 80, 80)!important;
+}
+
+.tabs-custom {
+    font-size: 16px;
+    color: #0F2441;
+    padding: 0.5rem 3rem;
+    border-radius: 0!important;
+    border: none!important;
+    font-weight: 300!important;
+}
+
+.tabs-custom.active {
+    background: #0F2441!important;
+    color: #fff!important;
+}
+
+.bottom-color-tab {
+    border-bottom: 1px solid #0F2441;
+}

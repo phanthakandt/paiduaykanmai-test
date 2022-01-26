@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import Web from './rotues/Web'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Web />
   </React.StrictMode>,
   document.getElementById('root')
 );
