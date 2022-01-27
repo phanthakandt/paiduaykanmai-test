@@ -27,3 +27,7 @@ iframe {
 .bottom-color-tab {
     border-bottom: 1px solid #0F2441;
 }
+
+a {
+    text-decoration: none;
+}
