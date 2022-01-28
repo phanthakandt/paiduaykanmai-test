@@ -25,7 +25,7 @@ export default function Products() {
         <div className="product-wrapper">
             <div className="container">
                 <div className="row">
-                    <ProductCard shop={{name: 'โค้ก', description: 'สูตรน้ำตาลน้อยกว่า', cost: '25', unit: 'ขวด'}} />
+                    {/* <ProductCard shop={{name: 'โค้ก', description: 'สูตรน้ำตาลน้อยกว่า', cost: '25', unit: 'ขวด'}} /> */}
                     {data ?
                         <>{data.map((item) => (<ProductCard shop={item} />))}</>
                         : <></>}

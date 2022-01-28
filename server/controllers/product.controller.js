@@ -29,6 +29,17 @@ exports.get_product_by_id = async (req, res) => {
     }
 }
 
+exports.get_product_by_owner_id = async (req, res) => {
+    try {
+        const id = req.params['id']
+        let product = await productModel.get_product_by_owner_id(id)
+
+        return res.status(200).send(product)
+    } catch (err) {
+        return res.sendStatus(500)
+    }
+}
+
 exports.get_product = async (req, res) => {
     try {
         let product = await productModel.get_product()

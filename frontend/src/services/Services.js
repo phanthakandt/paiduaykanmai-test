@@ -32,6 +32,11 @@ export async function get_product_by_id(id) {
 
 }
 
+export async function get_product_by_owner_id(id) {
+    return await axios.get(`${process.env.REACT_APP_API_URL}/get-product-by-owner-id/${id}`)
+
+}
+
 export async function update_product(data) {
     return await axios.put(`${process.env.REACT_APP_API_URL}/update-product`, data)
 }

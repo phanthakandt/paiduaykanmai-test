@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { get_shop_by_id, update_shop } from '../services/Services';
+import { get_product_by_owner_id, get_shop_by_id, update_shop } from '../services/Services';
+import ProductCard from '../components/ProductCard';
 
 import Back from '../components/Back'
 import './CreateShop.css'
@@ -9,7 +10,7 @@ import shopImg from '../assets/pic/shops.png'
 export default function ShopDetail() {
 
     let { id } = useParams()
-    // const [data, setData] = useState({})
+    const [products, setProcts] = useState([])
 
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
@@ -26,6 +27,15 @@ export default function ShopDetail() {
                 setDescription(res.data[0].description)
                 setTel(res.data[0].tel)
                 setAddr(res.data[0].addr)
+            }
+        } catch (err) {
+            console.log(err);
+        }
+
+        try {
+            let res = await get_product_by_owner_id(id)
+            if (res.status === 200) {
+                setProcts(res.data)
             }
         } catch (err) {
             console.log(err);
@@ -131,6 +141,13 @@ export default function ShopDetail() {
                         </form>
 
                     </div>
+                </div>
+
+                <div className='row mt-3 mb-5'>
+                    <h3 className='my-3'>Products</h3>
+                {products.length !== 0 ?
+                        <>{products.map((item) => (<ProductCard shop={item} />))}</>
+                        : <>This shop has no product yet.</>}
                 </div>
             </div>
         </div>

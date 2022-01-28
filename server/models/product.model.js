@@ -21,6 +21,10 @@ exports.update_product = async (id, data) => {
     return await product.update({ _id: id }, { $set: data })
 }
 
+exports.get_product_by_owner_id = async (id) => {
+    return await product.find({ ownerId: id })
+}
+
 exports.delete_product = async (id) => {
     return await product.remove({ _id: id })
 }
