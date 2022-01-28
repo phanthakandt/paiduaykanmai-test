@@ -16,3 +16,7 @@ exports.get_shop = async () => {
 exports.get_shop_by_id = async (id) => {
     return await shop.find({ _id: id })
 }
+
+exports.update_shop = async (id, data) => {
+    return await shop.update({ _id: id }, { $set: data })
+}

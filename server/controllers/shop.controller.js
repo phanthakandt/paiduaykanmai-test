@@ -36,3 +36,14 @@ exports.get_shop = async (req, res) => {
         return res.sendStatus(500)
     }
 }
+
+exports.update_shop = async (req, res) => {
+    try {
+        let shop = await shopModel.update_shop(req.body.id, req.body.data)
+
+        return res.status(200).send(shop)
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(500)
+    }
+}

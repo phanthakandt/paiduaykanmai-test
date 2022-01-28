@@ -1,62 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { get_shop_by_id, update_shop } from '../services/Services';
+import React, { useState } from 'react';
+import { useNavigate } from "react-router"
 
 import Back from '../components/Back'
 import './CreateShop.css'
-import shopImg from '../assets/pic/shops.png'
+import './CreateProduct.css'
+import snacksImg from '../assets/pic/snacks.png'
+import { create_shop } from '../services/Services'
 
-export default function ShopDetail() {
+export default function CreateProduct() {
 
-    let { id } = useParams()
-    // const [data, setData] = useState({})
+    const nav = useNavigate()
 
+    const [shopOwner, setShopOwner] = useState('')
+    const [shopOwnerId, setShopOwnerId] = useState('')
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
-    const [tel, setTel] = useState('')
-    const [addr, setAddr] = useState('')
+    const [cost, setCost] = useState('')
+    const [unit, setUnit] = useState('')
 
     const [err, setErr] = useState(0)
 
-    useEffect(async () => {
-        try {
-            let res = await get_shop_by_id(id)
-            if (res.status === 200) {
-                setName(res.data[0].name)
-                setDescription(res.data[0].description)
-                setTel(res.data[0].tel)
-                setAddr(res.data[0].addr)
-            }
-        } catch (err) {
-            console.log(err);
-        }
-    }, [])
-
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
-        let data = {
-            id: id,
-            data: {
-                name: name,
-                description: description,
-                tel: tel,
-                addr: addr
-            }
-        }
-
-        // console.log(data);
         try {
             setErr(0)
-            let res = await update_shop(data)
-    
-            if (res.status === 200) {
-                window.location.reload()
+            let data = {
+                ownerId: shopOwnerId,
+                ownerBy: shopOwner,
+                name: name,
+                description: description,
+                cost: cost,
+                unit: unit
             }
-            
+
+            // let res = await create_shop(data)
+            // if (res.status === 200) {
+            //     nav('/', { replace: true })
+            // }
         } catch (err) {
             setErr(1)
         }
+
     }
 
     return (
@@ -67,66 +52,78 @@ export default function ShopDetail() {
                 <div className="flex-box">
                     <div className="card create-shop-card">
                         <h3 className='text-center'>
-                            อัพเดทข้อมูล
+                            เพิ่มสินค้า
                         </h3>
                         <div className='flex-box'>
-                            <img src={shopImg} className='img-shop' />
+                            <img src={snacksImg} className='img-shop' />
                         </div>
                         <form onSubmit={handleSubmit}>
+                            <div className="flex-box">
+                                <select name="product-owner" className='select-box-product'>
+                                    <option value="">xxx</option>
+                                </select>
+
+                            </div>
+
                             <label className='label-inline'>
                                 <div className="head-label-100">
-                                    ชื่อร้าน
+                                    ชื่อสินค้า
                                     <req></req>:
                                 </div>
                                 <input
                                     className="text-input"
                                     type="text"
-                                    placeholder={name}
+                                    value={name}
                                     onChange={(e) => setName(e.target.value)}
+                                    required
+                                    autoFocus
                                 />
                             </label>
                             <label className='label-inline'>
                                 <div className="head-label-100">
-                                    คำอธิบาย
+                                    รายละเอียดสินค้า
                                     <req></req>:
                                 </div>
                                 <input
                                     className="text-input"
                                     type="text"
-                                    placeholder={description}
+                                    value={description}
                                     onChange={(e) => setDescription(e.target.value)}
+                                    required
                                 />
                             </label>
                             <label className='label-inline'>
                                 <div className="head-label-100">
-                                    เบอร์ติดต่อ
+                                    ราคา
                                     <req></req>:
                                 </div>
                                 <input
                                     className="text-input"
                                     type="tel"
-                                    placeholder={tel}
-                                    onChange={(e) => setTel(e.target.value)}
+                                    value={cost}
+                                    onChange={(e) => setCost(e.target.value)}
+                                    required
                                 />
                             </label>
                             <label className='label-inline'>
                                 <div className="head-label-100">
-                                    ที่อยู่
+                                    หน่วย
                                     <req></req>:
                                 </div>
                                 <input
                                     className="text-input"
                                     type="text"
-                                    placeholder={addr}
-                                    onChange={(e) => setAddr(e.target.value)}
+                                    value={unit}
+                                    onChange={(e) => setUnit(e.target.value)}
+                                    required
                                 />
                             </label>
                             <div className="flex-box">
-                                <input type="submit" value="อัพเดท" className="btn-submit" />
+                                <input type="submit" value="สร้าง" className="btn-submit" />
                             </div>
 
-                            <div className={`err-create ${err ? '' : 'd-none'}`}>
-                                <p>Oops! There's error occur while updating the shop, please try again later :(</p>
+                            <div className={`err-create ${err ? "" : "d-none"}`}>
+                                <p>Oops! There's error occur while creating the shop, please try again later :(</p>
                             </div>
                         </form>
 

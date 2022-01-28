@@ -13,3 +13,7 @@ export async function get_shop_by_id(id) {
     return await axios.get(`${process.env.REACT_APP_API_URL}/get-shop-by-id/${id}`)
 
 }
+
+export async function update_shop(data) {
+    return await axios.put(`${process.env.REACT_APP_API_URL}/update-shop`, data)
+}

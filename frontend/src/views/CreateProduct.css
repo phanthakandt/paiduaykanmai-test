@@ -1,0 +1,10 @@
+.select-box-product {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    height: 40px;
+    border: 1px solid #B4B4B4;
+    min-width: 231px;
+    text-align: center;
+    border-radius: 6px;
+
+}
